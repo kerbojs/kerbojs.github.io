@@ -1,6 +1,6 @@
 # kerbojs.github.io
 
-![CICD workflow](https://github.com/kerbojs/kerbojs.github.io/actions/workflows/CICD.yml/badge.svg?branch=next)
+![gh-pages workflow](https://github.com/kerbojs/kerbojs.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
 
 This template should help get you started developing with Vue 3 in Vite.
 
