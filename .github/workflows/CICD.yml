@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     
     environment:
-      name: Production
+      name: github-pages
       url: 'https://kerbojs.github.io'
       
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
@@ -62,8 +62,8 @@ jobs:
           
       - name: Set user
         run: |
-          git config user.name CasperSocio
-          git config user.email casper.tollefsen@outlook.com
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
 
       - name: Commit changes
         run: |
