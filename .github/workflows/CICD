@@ -1,0 +1,61 @@
+name: CICD
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "prod" branch
+  push:
+    branches: [ "prod" ]
+  pull_request:
+    branches: [ "prod" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Lint
+        run: echo Linter not configured yet
+
+      - name: Build site
+        run: npm run build
+        
+      - name: Test
+        run: echo Testing not configured yet.
+        
+      - name: Archive package artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+          
+  Deploy:
+    name: Deploy to prod
+    needs: [ Build ]
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: Production
+      url: 'https://kerbojs.github.io'
+      
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+      
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
