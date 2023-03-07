@@ -58,6 +58,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
+          
+      - name: Print files
+        run: ls -a
 
       - name: Commit changes
         run: git add dist -f && git commit -m "Adding dist"
