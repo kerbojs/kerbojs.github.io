@@ -60,11 +60,15 @@ jobs:
           name: dist
           path: dist
           
-      - name: Print files
-        run: ls -a
+      - name: Set user
+        run: |
+          git config user.name CasperSocio
+          git config user.email casper.tollefsen@outlook.com
 
       - name: Commit changes
-        run: git add dist -f && git commit -m "Adding dist"
+        run: |
+          git add dist -f
+          git commit -m "Adding dist"
           
       - name: Deploy to GitHub Pages
         run: git subtree push --prefix dist origin prod
