@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Logo from '@/components/visual/Logo/Logo.vue'
 import { RouterLink } from 'vue-router'
 </script>
 
@@ -6,15 +7,17 @@ import { RouterLink } from 'vue-router'
   <header class="Header">
     <div class="Header__wrapper">
       <div class="Header__left">
-        <h1 class="Header__brand-name">KerboJS</h1>
+        <RouterLink to="/">
+          <Logo variant="text" :size="40" />
+        </RouterLink>
       </div>
-      <div class="Header__center">
+      <div class="Header__center"></div>
+      <div class="Header__right">
         <nav>
           <RouterLink to="/">Home</RouterLink>
           <!-- <RouterLink to="/about">About</RouterLink> -->
         </nav>
       </div>
-      <div class="Header__right"></div>
     </div>
   </header>
 </template>
@@ -29,17 +32,24 @@ import { RouterLink } from 'vue-router'
   display: flex;
   margin: 0 auto;
   max-width: var(--content-width);
+  padding: 1rem;
   width: 100%;
 }
 
 .Header__left {
   flex-grow: 2;
-  padding: 0.5rem 1rem;
 }
 
 .Header__brand-name {
+  font-family: 'Raleway', sans-serif;
   font-size: 1.6rem;
-  font-weight: 800;
+  font-weight: 900;
+}
+
+.Header__right {
+  display: flex;
+  flex-grow: 2;
+  justify-content: flex-end;
 }
 
 nav {

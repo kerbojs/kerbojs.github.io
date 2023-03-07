@@ -2,10 +2,10 @@ name: CICD
 
 on:
   # Triggers the workflow on push or pull request events but only for the "prod" branch
-  push:
-    branches: [ "prod" ]
-  pull_request:
-    branches: [ "prod" ]
+#  push:
+#    branches: [ "prod" ]
+#  pull_request:
+#    branches: [ "prod" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -51,11 +51,16 @@ jobs:
       id-token: write   # to verify the deployment originates from an appropriate source
       
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
           name: dist
+
+      - name: Commit changes
+        run: git add dist -f && git commit -m "Adding dist"
           
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        run: git subtree push --prefix dist origin prod
