@@ -8,7 +8,7 @@ import { RouterLink } from 'vue-router'
     <div class="Header__wrapper">
       <div class="Header__left">
         <RouterLink to="/">
-          <Logo variant="text" :size="40" />
+          <Logo variant="slogan" :size="40" />
         </RouterLink>
       </div>
       <div class="Header__center"></div>

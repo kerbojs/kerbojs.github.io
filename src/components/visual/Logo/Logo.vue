@@ -3,15 +3,21 @@ import InlineSvg from 'vue-inline-svg'
 
 const props = withDefaults(
   defineProps<{
+    badge?: boolean
     size?: number
-    variant?: 'default' | 'full' | 'ship' | 'text'
+    variant?: 'full' | 'name' | 'shuttle' | 'slogan'
   }>(),
   {
-    variant: 'default',
+    badge: false,
+    variant: 'full',
   },
 )
 
-const imgPath = () => new URL(`../../../assets/img/logo_${props.variant}.svg`, import.meta.url).href
+const imgPath = () =>
+  new URL(
+    `../../../assets/logo/logo_${props.badge ? 'badge' : 'default'}_${props.variant}.svg`,
+    import.meta.url,
+  ).href
 </script>
 
 <template>
